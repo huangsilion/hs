@@ -1,0 +1,152 @@
+technologic: Angularjs, node.js, maven, Spring+hibernate
+********************************************************************************
+Environment setup:
+1 Download tomecat 7 from blow link:
+  https://tomcat.apache.org/download-70.cgi
+2 make sure you have java setup in you machine, it is recommended to use JAVA8.
+3 install eclipse
+4 install maven,
+  if you use windows/mac/linux, follow the steps in this link:: http://www.baeldung.com/install-maven-on-windows-linux-mac
+5 download node.js make sure "npm -version" command works
+6 install mysql, set root user password as: 12345
+  If you set to other password, please update the hibernate password and username in the properties file in project
+  path: hs/src/main/resources/properties/jdbc.properties
+5 install workbench if you want to run mysql command in UI not commands line
+6 create schema mydb and tables with below commands:
+
+CREATE DATABASE mydb;
+CREATE TABLE  mydb.User (
+  userid varchar(11) NOT NULL,
+  pswd varchar(16) NOT NULL,
+  start_date DATETIME(6) DEFAULT NULL,
+  PRIMARY KEY (userid)
+) ENGINE=InnoDB;
+
+CREATE TABLE mydb.Channel (
+    channelid varchar(11) NOT NULL,
+    PRIMARY KEY (channelid)
+) ENGINE=InnoDB;
+
+ALTER TABLE mydb.Channel ADD INDEX channelid (channelid);
+
+CREATE TABLE mydb.Message (
+    messageId varchar(255),
+    userid varchar(11),
+    channelid varchar(11),
+    timeCreated DATETIME(6) DEFAULT NULL,
+    context varchar(255),
+    PRIMARY KEY (messageId)
+)ENGINE=InnoDB;
+
+CREATE TABLE  mydb.User_Channel(
+  userid varchar(11),
+  channelid varchar(11) ,
+  PRIMARY KEY (userid,channelid)
+);
+
+CREATE TABLE  mydb.User_Channel_TimeStamp(
+  userid varchar(11),
+  channelid varchar(11) ,
+  timeUpdated DATETIME(6) DEFAULT NULL,
+  PRIMARY KEY (userid,channelid)
+);
+
+********************************************************************************
+Build:
+1 start your mysql server and make sure above schema and table is created.
+2 import project to Eclipse: File->Import->General->Existing Project into WorkSapce->select this project as root directory
+3 from command line, go to project(hs) folder and run this command to build project(hs): mvn install -X
+4 add server linked with tomcat7, you can follow the steps:
+  https://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.stardust.docs.wst%2Fhtml%2Fwst-integration%2Fconfiguration.html
+5 Go to hs/src/main/webapp/resources/js folder and install bower. npm install -g bower or npm install -g Then: bower install
+4 Install the dependencies in hs/src/main/webapp/resources/js folder: npm install socket.io express
+5 Start the socket server  in hs/src/main/webapp/resources/js folder with command: node appSocket.js
+  Then it will be run on http://127.0.0.1:3000
+  if you are using windows, please go to the folder and right click this file run as node.js application
+6 publish to server(tomcat 7) or copy war file to tomcat dirctory, start server
+7 Got to login screen with below url:
+  http://localhost:8080/hs/resources/jsp/login.jsp
+
+********************************************************************************
+Possible issue during deploy application:
+1 During maven install to build your project, you may probably get this error "Can't find tool.jar in XXXX". make sure the tool.jar is in the folder mention by this errorMessage
+2 you have to start socket.io before start this project, otherwise, you will get "io is undefine" in UI or the UI is not showing properly.
+3 if you are in window, and running "node app.js" getting error, please go to this file and run this as "node.js application"
+4 if you have jdbc connection error will NullPointerException, it could be your JDBC driver version is lower than your mysql version.
+  in hs/pom.xml, we define the JDBC version,
+  <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.39</version>
+  </dependency>
+
+
+
+SQL:
+Relationship:
+User->Channel *->*
+User->Message 1>-*
+Channel->Message 1->*
+
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+INSERT INTO table_name
+VALUES (value1, value2, value3, ...);
+SHOW CREATE TABLE mydb.Channel
+UPDATE mydb.User
+SET userid = 1, start_date= NOW()
+WHERE userid = 1;
+DATETIME(6)
+
+ALTER TABLE mydb.Message
+MODIFY context  LONGTEXT;
+
+select * from mydb.User_Channel_TimeStamp;
+select * from mydb.Message;
+select * from mydb.Channel;
+********************************************
+
+CREATE TABLE  mydb.User (
+  userid varchar(11) NOT NULL,
+  pswd varchar(16) NOT NULL,
+  start_date DATETIME(6) DEFAULT NULL,
+  PRIMARY KEY (userid)
+) ENGINE=InnoDB;
+
+CREATE TABLE mydb.Channel (
+    channelid varchar(11) NOT NULL,
+    PRIMARY KEY (channelid)
+) ENGINE=InnoDB;
+
+ALTER TABLE mydb.Channel ADD INDEX channelid (channelid);
+
+CREATE TABLE mydb.Message (
+    messageId varchar(255),
+    userid varchar(11),
+    channelid varchar(11),
+    timeCreated DATETIME(6) DEFAULT NULL,
+    context varchar(255),
+    PRIMARY KEY (messageId)
+)ENGINE=InnoDB;
+
+CREATE TABLE  mydb.User_Channel(
+  userid varchar(11),
+  channelid varchar(11) ,
+  PRIMARY KEY (userid,channelid)
+);
+
+CREATE TABLE  mydb.User_Channel_TimeStamp(
+  userid varchar(11),
+  channelid varchar(11) ,
+  timeUpdated DATETIME(6) DEFAULT NULL,
+  PRIMARY KEY (userid,channelid)
+);
+
+
+User_Channel_Message
+1) user object has channel info, when a new message is added to the channel. Server will broadcast to all online users
+  . if current user is in this channel, show  the messages
+  . if current user is not on this channel page, get some mark(bold,red?) for that. If user go back to dashboard, Same as 3)
+2) For off-line user, we will not broadcast. Instead, when the off-line user login, he will get his channel and lastVisited timestamp
+   use those info to query Message table to get unread message.
+3) when user switch channel, it will update lastVisited timestamp for current channel.

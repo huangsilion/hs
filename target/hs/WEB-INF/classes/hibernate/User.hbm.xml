@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.hs.model.User" table="User">
+		<id name="userid" type="string" access="field">
+			<column name="userid" />
+		</id>
+		<property name="password" type="string" access="field">
+			<column name="pswd"></column>
+		</property>
+		<property name="loginTimeStamp" type="timestamp" access="field">
+			<column name="start_date"></column>
+		</property>
+		<set name="channels" table="User_Channel" lazy="false">
+			<key column="userid" />
+			<many-to-many column="channelid" class="com.hs.model.Channel" />
+		</set>
+	</class>
+</hibernate-mapping>

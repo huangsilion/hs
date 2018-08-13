@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.hs.model.UserChannelTimeStamp" table="User_Channel_TimeStamp">
+		<composite-id>
+			<key-property name="userid" column="userid" />
+			<key-property name="channelid" column="channelid" />
+		</composite-id>
+		<property name="timeUpdated" type="timestamp" access="field">
+			<column name="timeUpdated"></column>
+		</property>
+	</class>
+</hibernate-mapping>

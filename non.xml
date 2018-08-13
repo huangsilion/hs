@@ -1,0 +1,83 @@
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://svcdev6.ariba.com/schemas/cXML/1.2.038/InvoiceDetail.dtd">
+<cXML payloadID="1534192046322-6255603223310527615@10.163.0.250" timestamp="2018-08-13T13:27:26-07:00"><Header>
+   <From>
+       <Credential
+           domain="NetworkID">
+   <Identity>AN70000000004</Identity>
+
+
+   </Credential>
+
+
+   </From>
+   <To>
+       <Credential
+           domain="NetworkID">
+   <Identity>AN02004973330</Identity>
+
+
+   </Credential>
+
+
+   </To>
+   <Sender>
+       <Credential domain="NetworkID">
+   <Identity>AN01000000001</Identity>
+
+
+   </Credential>
+
+       <UserAgent>Supplier</UserAgent>
+   </Sender>
+
+</Header>
+<Request deploymentMode="production"><InvoiceDetailRequest><InvoiceDetailRequestHeader invoiceDate="2018-08-13T13:27:25-07:00"
+   invoiceID="SunitaTest" invoiceOrigin="supplier" operation="new"
+           purpose="standard"><InvoiceDetailHeaderIndicator/><InvoiceDetailLineIndicator/><InvoicePartner><Contact
+               role="remitTo"><Name
+                   xml:lang="en-US">JCN Technologies: Ariba Network</Name><PostalAddress><Street>1111 New Street AAABBB</Street><Street>Dulq Road 3nd</Street><Street/><Street/><City>Dallas</City><State>TX</State><PostalCode>75201</PostalCode><Country
+           isoCountryCode="US">United States</Country></PostalAddress></Contact></InvoicePartner><InvoicePartner><Contact
+               role="from"><Name
+                   xml:lang="en-US">GST addr</Name><PostalAddress><Street>Nandidurga Road</Street><Street/><Street/><Street/><City>bangalore</City><State
+                   isoStateCode="IN-KA">Karnataka</State><PostalCode>460025</PostalCode><Country
+           isoCountryCode="IN">India</Country></PostalAddress></Contact></InvoicePartner><InvoicePartner><Contact
+               role="billFrom"><Name
+                   xml:lang="en-US">JCN Technologies - do NOT edit (sunita2- 1/26/12)</Name><PostalAddress><Street>An der Welle 4</Street><Street>cathy edit 1/13/2012 test org sync</Street><Street/><Street/><City>Munich</City><PostalCode>94089</PostalCode><Country
+           isoCountryCode="DE">Germany</Country></PostalAddress></Contact></InvoicePartner><InvoicePartner><Contact
+               role="soldTo"><Name
+                   xml:lang="en-US">si-p2p-tesg</Name><PostalAddress><Street>123</Street><Street>palo alto</Street><Street/><Street/><City>palo alto</City><State>CA</State><PostalCode>95050</PostalCode><Country
+           isoCountryCode="US">United States</Country></PostalAddress><Email>mditka@ariba.com</Email></Contact></InvoicePartner><InvoicePartner><Contact
+               role="receivingBank"><Name
+           xml:lang="en-US">State Bank of Texas</Name></Contact><IdReference
+           domain="accountName"
+           identifier="New Shaz Account"/><IdReference
+           domain="accountType" identifier="Checking"/><IdReference
+           domain="branchName"
+           identifier="Dulq Road, Dallas"/><IdReference
+           domain="accountID" identifier="******7890"/><IdReference
+           domain="bankRoutingID"
+           identifier="121000248"/></InvoicePartner><InvoicePartner><Contact
+               role="wireReceivingBank"><Name
+           xml:lang="en-US">Ariba bank</Name></Contact><IdReference
+           domain="accountName"
+           identifier="Wire Test Account"/><IdReference
+           domain="accountType" identifier="Checking"/><IdReference
+           domain="accountID" identifier="*******1333"/><IdReference
+           domain="swiftID"
+           identifier="990103"/></InvoicePartner><InvoiceDetailShipping><Contact
+              role="shipFrom"><Name
+                   xml:lang="en-US">JCN Technologies - do NOT edit (sunita2- 1/26/12)</Name><PostalAddress><Street>An der Welle 4</Street><Street>cathy edit 1/13/2012 test org sync</Street><Street/><Street/><City>Munich</City><PostalCode>94089</PostalCode><Country
+           isoCountryCode="DE">Germany</Country></PostalAddress></Contact><Contact
+               role="shipTo"><Name
+                   xml:lang="en-US">si-p2p-tesg</Name><PostalAddress><Street>123</Street><Street>palo alto</Street><Street/><Street/><City>palo alto</City><State>CA</State><PostalCode>95050</PostalCode><Country
+       isoCountryCode="US">United States</Country></PostalAddress></Contact></InvoiceDetailShipping><Extrinsic
+       name="invoiceSourceDocument">ExternalPurchaseOrder</Extrinsic><Extrinsic
+       name="invoiceSubmissionMethod">Online</Extrinsic><Extrinsic
+       name="supplierCommercialIdentifier">CI1234354</Extrinsic><Extrinsic name="supplierCommercialCredentials">This is Comm Credent</Extrinsic></InvoiceDetailRequestHeader>
+<InvoiceDetailOrder><InvoiceDetailOrderInfo><OrderIDInfo orderID="1234"></OrderIDInfo></InvoiceDetailOrderInfo><InvoiceDetailItem invoiceLineNumber="1" isAdHoc="yes" quantity="100"><UnitOfMeasure>EA</UnitOfMeasure><UnitPrice><Money currency="USD">100.00</Money></UnitPrice><InvoiceDetailItemReference lineNumber="1"><ItemID><SupplierPartID>123</SupplierPartID><BuyerPartID>1234</BuyerPartID></ItemID><Description xml:lang="en-US">sfdswf</Description></InvoiceDetailItemReference><SubtotalAmount><Money currency="USD">10000.00</Money></SubtotalAmount><GrossAmount><Money currency="USD">10000.00</Money></GrossAmount><NetAmount><Money currency="USD">10000.00</Money></NetAmount><Extrinsic name="punchinItemFromCatalog">no</Extrinsic></InvoiceDetailItem></InvoiceDetailOrder><InvoiceDetailSummary><SubtotalAmount><Money currency="USD">10000.00</Money></SubtotalAmount><Tax><Money currency="USD">100.00</Money><Description xml:lang="en-US"></Description><TaxDetail category="sales" percentageRate="1.00"><TaxableAmount><Money currency="USD">10000.00</Money></TaxableAmount><TaxAmount><Money currency="USD">100.00</Money></TaxAmount><Description xml:lang="en-US"></Description></TaxDetail></Tax><GrossAmount><Money currency="USD">10100.00</Money></GrossAmount><NetAmount><Money currency="USD">10100.00</Money></NetAmount><DueAmount><Money currency="USD">10100.00</Money></DueAmount></InvoiceDetailSummary></InvoiceDetailRequest>
+
+   </Request>
+</cXML>

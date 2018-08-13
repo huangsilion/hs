@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.hs.model.Message" table="Message">
+		<id name="messageId" type="string" access="field">
+			<column name="messageId" />
+		</id>
+		<property name="userid" type="string" access="field">
+			<column name="userid"></column>
+		</property>
+		<property name="channelid" type="string" access="field">
+			<column name="channelid"></column>
+		</property>
+		<property name="timeCreated" type="timestamp" access="field">
+			<column name="timeCreated"></column>
+		</property>
+		<property name="context" type="string" access="field">
+			<column name="context"></column>
+		</property>
+	</class>
+</hibernate-mapping>
